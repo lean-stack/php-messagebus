@@ -1,5 +1,5 @@
 {
-  "name": "lean/messagebus",
+  "name": "lean-stack/messagebus",
   "description": "Lean PHP Messagebus",
   "type": "library",
   "license": "MIT",
