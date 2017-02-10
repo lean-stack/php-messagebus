@@ -1,0 +1,15 @@
+{
+  "name": "lean/messagebus",
+  "description": "Lean PHP Messagebus",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Micha Alt",
+      "email": "mail@lean-stack.de"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.1"
+  }
+}
