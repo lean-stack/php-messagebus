@@ -9,7 +9,21 @@
       "email": "mail@lean-stack.de"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "Lean\\MessageBus\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Lean\\MessageBus\\": "specs/"
+    }
+  },
   "require": {
-    "php": ">=7.1.1"
+    "php": ">=7.1.1",
+    "psr/container": "1.0.x-dev"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^3.2"
   }
 }

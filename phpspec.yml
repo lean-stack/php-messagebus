@@ -1,0 +1,8 @@
+suites:
+  lean:
+    namespace:   Lean\MessageBus
+    psr4_prefix: Lean\MessageBus
+    spec_prefix:
+    spec_path:   specs
+
+formatter.name: pretty
