@@ -15,7 +15,7 @@ class CommandBus
 
         // Push a no-op middleware at the end
         $this->middlewares[] = new class implements MiddlewareInterface {
-            function __invoke($command, callable $next)
+            function __invoke($command, callable $next = null)
             {
             }
         };
