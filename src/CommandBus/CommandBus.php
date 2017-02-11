@@ -1,9 +1,7 @@
 <?php
 
-namespace Lean\MessageBus;
+namespace Lean\MessageBus\CommandBus;
 
-use Lean\MessageBus\CommandBus\CommandBusInterface;
-use Lean\MessageBus\CommandBus\CommandInterface;
 use Lean\MessageBus\CommandBus\Middleware\MiddlewareInterface;
 
 class CommandBus implements CommandBusInterface

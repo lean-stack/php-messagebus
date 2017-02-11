@@ -1,8 +1,7 @@
 <?php
 
-namespace Lean\MessageBus;
+namespace Lean\MessageBus\CommandBus;
 
-use Lean\MessageBus\CommandBus;
 use Lean\MessageBus\CommandBus\CommandInterface;
 use Lean\MessageBus\CommandBus\Middleware\MiddlewareInterface;
 use PhpSpec\ObjectBehavior;
