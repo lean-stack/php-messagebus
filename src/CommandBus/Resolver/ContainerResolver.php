@@ -14,13 +14,19 @@ class ContainerResolver implements ResolverInterface
     private $container;
 
     /**
+     * @var HandlerNameResolverInterface
+     */
+    private $handlerNameResolver;
+
+    /**
      * ContainerResolver constructor.
      *
      * @param ContainerInterface $container
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, HandlerNameResolverInterface $handlerNameResolver)
     {
         $this->container = $container;
+        $this->handlerNameResolver = $handlerNameResolver;
     }
 
     /**
@@ -35,6 +41,7 @@ class ContainerResolver implements ResolverInterface
             throw new \InvalidArgumentException('Command has no name.');
         }
 
-        return $this->container->get($command->getName());
+        $handlerName = $this->handlerNameResolver->getHandlerName($command->getName());
+        return $this->container->get($handlerName);
     }
 }
