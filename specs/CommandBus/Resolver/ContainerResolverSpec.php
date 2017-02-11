@@ -11,9 +11,9 @@ use Psr\Container\ContainerInterface;
 
 class ContainerResolverSpec extends ObjectBehavior
 {
-    function let(ContainerInterface $container)
+    function let(ContainerInterface $container, HandlerNameResolverInterface $handlerNameResolver)
     {
-        $this->beConstructedWith($container);
+        $this->beConstructedWith($container, $handlerNameResolver);
     }
 
     function it_is_initializable()
@@ -28,11 +28,15 @@ class ContainerResolverSpec extends ObjectBehavior
 
     function it_can_resolve_a_handler_by_command_name(
         ContainerInterface $container,
+        HandlerNameResolverInterface $handlerNameResolver,
         CommandInterface $command,
         CommandHandlerInterface $handler)
     {
-        $commandName = $command->getName()->willReturn('do.something');
-        $container->get('do.something')->willReturn($handler);
+        $commandName = 'do.something';
+
+        $command->getName()->willReturn($commandName);
+        $handlerNameResolver->getHandlerName($commandName)->willReturn($commandName . '_handler');
+        $container->get($commandName. '_handler')->willReturn($handler);
 
         $this->getHandler($command)->shouldReturn($handler);
     }
