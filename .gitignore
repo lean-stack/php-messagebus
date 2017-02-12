@@ -1,5 +1,6 @@
 # Managed by Composer
 /vendor/
+/composer.lock
 
 # Editor/IDE settings
 /.idea/
