@@ -19,6 +19,7 @@ class MapResolver implements HandlerResolverInterface
     /**
      * MapResolver constructor.
      *
+     * @param CommandNameResolverInterface $resolver
      * @param array $commandNameToHandlerMap
      */
     public function __construct(CommandNameResolverInterface $resolver, array $commandNameToHandlerMap)
