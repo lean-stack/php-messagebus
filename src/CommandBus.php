@@ -32,7 +32,8 @@ class CommandBus
 
         /** @var MiddlewareInterface $next */
         while (($next = array_shift($middlewareChain)) !== null) {
-            $next->__invoke($command, current($middlewareChain) ?: function(){});
+            $next->__invoke($command, current($middlewareChain) ?: function () {
+            });
         }
     }
 }

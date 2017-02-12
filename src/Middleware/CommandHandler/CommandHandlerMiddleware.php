@@ -25,11 +25,13 @@ class CommandHandlerMiddleware implements MiddlewareInterface
      *
      * @return mixed
      */
-    function __invoke($command, callable $next = null)
+    public function __invoke($command, callable $next = null)
     {
         $handler = $this->handlerResolver->getHandlerForCommand($command);
         $handler($command);
 
-        if ($next !== null) { $next($command); };
+        if ($next !== null) {
+            $next($command);
+        };
     }
 }

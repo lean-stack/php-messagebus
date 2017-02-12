@@ -12,5 +12,5 @@ interface MiddlewareInterface
      *
      * @return mixed
      */
-    function __invoke($command, callable $next = null);
+    public function __invoke($command, callable $next = null);
 }
