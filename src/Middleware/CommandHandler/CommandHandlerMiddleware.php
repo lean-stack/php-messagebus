@@ -2,7 +2,7 @@
 
 namespace Lean\MessageBus\Middleware\CommandHandler;
 
-use Lean\MessageBus\Middleware\CommandHandler\Resolver\HandlerResolverInterface;
+use Lean\MessageBus\Middleware\CommandHandler\Resolver\HandlerResolver\HandlerResolverInterface;
 use Lean\MessageBus\MiddlewareInterface;
 
 class CommandHandlerMiddleware implements MiddlewareInterface

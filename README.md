@@ -25,3 +25,11 @@
 - The CommandhandlerMiddleware *makes* the CommandBus
 - The CommandHandlerMiddleware delegates a command to its handler
 - The CommandHandler uses a HandlerResolver to determine the handler for a given command
+
+### HandlerResolver
+- A HandlerResolver is any class implementing the interface
+- A HandlerResolver determines the command handler for a given command
+
+### CommandNameResolver
+- A CommandNameResolver is any class implementing the interface
+- A CommandName determines the name of a given command

@@ -3,7 +3,7 @@
 namespace Lean\MessageBus\Middleware\CommandHandler;
 
 use Lean\MessageBus\Middleware\CommandHandler\CommandHandlerMiddleware;
-use Lean\MessageBus\Middleware\CommandHandler\Resolver\HandlerResolverInterface;
+use Lean\MessageBus\Middleware\CommandHandler\Resolver\HandlerResolver\HandlerResolverInterface;
 use Lean\MessageBus\MiddlewareInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -25,11 +25,31 @@ class CommandHandlerMiddlewareSpec extends ObjectBehavior
         $this->shouldImplement(MiddlewareInterface::class);
     }
 
-    function it_delegates_a_command_to_its_handler($command, HandlerResolverInterface $resolver, MiddlewareInterface $handler)
+    function it_delegates_a_command_to_a_closure_handler($command, HandlerResolverInterface $resolver)
     {
-        $resolver->getHandlerForCommand($command)->willReturn($handler);
-        $this->__invoke($command, function (){});
+        $handler = function ($command) { trigger_error('Expected', E_USER_NOTICE); };
 
-        $handler->__invoke($command)->shouldHaveBeenCalled();
+        $resolver->getHandlerForCommand($command)->willReturn($handler);
+        $this->shouldTrigger(E_USER_NOTICE, 'Expected')->during('__invoke', [$command, function (){}]);
+    }
+
+    function it_delegates_a_command_to_an_invocable($command, HandlerResolverInterface $resolver)
+    {
+        $handler = new class() {
+            function __invoke ($command) { trigger_error('Expected', E_USER_NOTICE); }
+        };
+
+        $resolver->getHandlerForCommand($command)->willReturn($handler);
+        $this->shouldTrigger(E_USER_NOTICE, 'Expected')->during('__invoke', [$command, function (){}]);
+    }
+
+    function it_delegates_a_command_to_an_instance_method($command, HandlerResolverInterface $resolver)
+    {
+        $handler = new class() {
+            function handle ($command) { trigger_error('Expected', E_USER_NOTICE); }
+        };
+
+        $resolver->getHandlerForCommand($command)->willReturn([$handler,'handle']);
+        $this->shouldTrigger(E_USER_NOTICE, 'Expected')->during('__invoke', [$command, function (){}]);
     }
 }
