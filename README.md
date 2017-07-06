@@ -1,6 +1,6 @@
 # Lean PHP Messagebus #
 
-> A Lean PHP Messagebus
+> A Lean PHP Messagebus (just a demo for my trainings)
 
 ## CommandBus Design
 
